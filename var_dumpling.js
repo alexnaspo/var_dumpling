@@ -18,14 +18,20 @@ $(document).ready(function(){
   var detectVarDump = /int\(\d[0-9]*\)|string\(\d[0-9]*\)\s\"*\w{0,100000}\"*\s|array\(\d[0-9]*\)\s\{|bool\(true\)|bool\(false\)|float\(\d[0-9]*\.\d[0-9]*\)/i;
   var detectArray = /array\(\d{1,1000}\)\s\{/i;
 
+
   if (detectVarDump.test(dumpling)) {
     alert('var_dump Detected')
     //format var_dump here
     $('body').attr('id', 'dumpling');
+    $('body').empty();
+
     var indexTest = dumpling.indexOf("array(");
 
     if(indexTest == 0){
-      alert('var_dump array Detected');
+      var startArray = detectArray.exec(dumpling);
+
+      document.write(startArray);
+
     }
     
   } else {
