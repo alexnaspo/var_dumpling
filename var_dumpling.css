@@ -14,6 +14,7 @@
 	padding-left:80px;
 }
 
+
 .string{
 	color:#090;
 }
@@ -29,4 +30,8 @@ body{
 
 .index{
 	font-weight: bold;
+}
+
+.int{
+	color:#009;
 }

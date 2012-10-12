@@ -3,7 +3,7 @@ if ($('body').children().length == 0) {
   var dumpling = $('body').text();
   var startingArray = dumpling.match(/^array\([0-9]*\)\s\{|^array\s\(/g);
   
-  if (startingArray) {
+  if(startingArray) {
 
     dumpling = dumpling.replace(/(\n\s\s|\n)/gm, " ");
     dumpling = dumpling.replace(/([\s]+)/gm, " ");
@@ -21,10 +21,14 @@ if ($('body').children().length == 0) {
         nestLevel--;
       }
 
-      if(myArray[i].toString().match(/\["?[0-9a-zA-Z]*"?\]/i)){
-        var index = myArray[i].toString().match(/\["?[0-9a-zA-Z]*"?\]/i);
+      if(myArray[i].toString().match(/\["?[0-9a-zA-Z]*"?\]=>/i)){
+        var index = myArray[i].toString().match(/\["?[0-9a-zA-Z]*"?\]=>/i);
         console.log(index);
-        myArray[i] = myArray[i].toString().replace(/\["?[0-9a-zA-Z]*"?\]/i, "<span class='index'>" + index + "</span>")
+        myArray[i] = myArray[i].toString().replace(/\["?[0-9a-zA-Z]*"?\]=>/i, "<span class='index'>" + index + "</span>")
+      }
+      if(myArray[i].toString().match(/\sint\([0-9]*\)/i)){
+        var int = myArray[i].toString().match(/\([0-9]*\)/i);
+        myArray[i] = myArray[i].toString().replace(/\([0-9]*\)/i, "<span class='int'>" + int + "</span>")
       }
 
       if(myArray[i].toString().match(/\s"[a-z]*"/i)){
