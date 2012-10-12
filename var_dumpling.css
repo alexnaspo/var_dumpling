@@ -1,11 +1,11 @@
 #nestLevel1{
-	padding-left:10px;
-}
-
-#nestLevel2{
 	padding-left:20px;
 }
 
+#nestLevel2{
+	padding-left:40px;
+}
+
 #nestLevel3{
-	padding-left:30px;
+	padding-left:60px;
 }
