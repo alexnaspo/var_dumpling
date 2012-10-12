@@ -20,10 +20,37 @@ if ($('body').children().length == 0) {
       if (myArray[i] == "}" || myArray[i] == " )," || myArray[i] == " )") {
         nestLevel--;
       }
-      $('body').append("<div class='element' id=nestLevel" + nestLevel + ">" + myArray[i].toString() + "</div>");
+
+      if(myArray[i].toString().match(/\["?[0-9a-zA-Z]*"?\]/i)){
+        var index = myArray[i].toString().match(/\["?[0-9a-zA-Z]*"?\]/i);
+        console.log(index);
+        myArray[i] = myArray[i].toString().replace(/\["?[0-9a-zA-Z]*"?\]/i, "<span class='index'>" + index + "</span>")
+      }
+
+      if(myArray[i].toString().match(/\s"[a-z]*"/i)){
+        var str = myArray[i].toString().match(/\s"[a-z]*"/i);
+        myArray[i] = myArray[i].toString().replace(/\s"[a-z]*"/i, "<span class='string'>" + str + "</span>")
+      }
+      $('body').append("<div class='element nestLevel" + nestLevel + "' id='" + i + "'>" + myArray[i].toString() + "</div>");
+
       if (myArray[i].match(/array\([0-9]*\)\s\{|array\s\(|array\s=>/)) {
         nestLevel++;
       }
     }
   }
 }
+
+//create function to grab each element, determine the type and return with proper class
+
+  // WebFontConfig = {
+  //   google: { families: [ 'Source+Sans+Pro:200,400:latin' ] }
+  // };
+  // (function() {
+  //   var wf = document.createElement('script');
+  //   wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+  //     '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+  //   wf.type = 'text/javascript';
+  //   wf.async = 'true';
+  //   var s = document.getElementsByTagName('script')[0];
+  //   s.parentNode.insertBefore(wf, s);
+  // })();

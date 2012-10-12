@@ -1,15 +1,32 @@
-#nestLevel1{
+.nestLevel1{
 	padding-left:20px;
 }
 
-#nestLevel2{
+.nestLevel2{
 	padding-left:40px;
 }
 
-#nestLevel3{
+.nestLevel3{
 	padding-left:60px;
 }
 
-#nestLevel4{
+.nestLevel4{
 	padding-left:80px;
+}
+
+.string{
+	color:#090;
+}
+
+body{
+	font-weight:500;
+/*	font-family: 'Source Sans Pro', sans-serif;
+*/	font-size:85%;
+	letter-spacing:2px;
+	line-height:140%
+
+}
+
+.index{
+	font-weight: bold;
 }
