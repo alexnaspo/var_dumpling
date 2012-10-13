@@ -20,9 +20,9 @@
 }
 
 body{
-	font-weight:500;
-/*	font-family: 'Source Sans Pro', sans-serif;
-*/	font-size:85%;
+	font-weight:300;
+	font-family: 'Helvetica Neue', sans-serif;
+	font-size:85%;
 	letter-spacing:2px;
 	line-height:140%
 
@@ -33,5 +33,5 @@ body{
 }
 
 .int{
-	color:#009;
+	color:#005;
 }

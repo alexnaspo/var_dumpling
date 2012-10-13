@@ -21,20 +21,7 @@ if ($('body').children().length == 0) {
         nestLevel--;
       }
 
-      if(myArray[i].toString().match(/\["?[0-9a-zA-Z]*"?\]=>/i)){
-        var index = myArray[i].toString().match(/\["?[0-9a-zA-Z]*"?\]=>/i);
-        console.log(index);
-        myArray[i] = myArray[i].toString().replace(/\["?[0-9a-zA-Z]*"?\]=>/i, "<span class='index'>" + index + "</span>")
-      }
-      if(myArray[i].toString().match(/\sint\([0-9]*\)/i)){
-        var int = myArray[i].toString().match(/\([0-9]*\)/i);
-        myArray[i] = myArray[i].toString().replace(/\([0-9]*\)/i, "<span class='int'>" + int + "</span>")
-      }
-
-      if(myArray[i].toString().match(/\s"[a-z]*"/i)){
-        var str = myArray[i].toString().match(/\s"[a-z]*"/i);
-        myArray[i] = myArray[i].toString().replace(/\s"[a-z]*"/i, "<span class='string'>" + str + "</span>")
-      }
+      myArray[i] = highlight(myArray[i]);
       $('body').append("<div class='element nestLevel" + nestLevel + "' id='" + i + "'>" + myArray[i].toString() + "</div>");
 
       if (myArray[i].match(/array\([0-9]*\)\s\{|array\s\(|array\s=>/)) {
@@ -42,6 +29,29 @@ if ($('body').children().length == 0) {
       }
     }
   }
+}
+
+function highlight (element) {
+
+  if(element.toString().match(/\["?[0-9a-zA-Z]*"?\]=>/i)){
+    var index = element.toString().match(/\["?[0-9a-zA-Z]*"?\]=>/i);
+    element = element.toString().replace(/\["?[0-9a-zA-Z]*"?\]=>/i, "<span class='index'>" + index + "</span>");
+  }
+
+  if(element.toString().match(/\sint\([0-9]*\)/i)){
+    var integer = element.toString().match(/\([0-9]*\)/i);
+    element = element.toString().replace(/\([0-9]*\)/i, "<span class='int'>" + integer + "</span>");
+    return element;
+  }
+
+  if(element.toString().match(/\s"[a-z]*"/i)){
+    var str = element.toString().match(/\s"[a-z]*"/i);
+    element = element.toString().replace(/\s"[a-z]*"/i, "<span class='string'>" + str + "</span>");
+    return element;
+  } else {
+    return element;
+  }
+
 }
 
 //create function to grab each element, determine the type and return with proper class
