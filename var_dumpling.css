@@ -13,10 +13,13 @@
 .nestLevel4{
 	padding-left:80px;
 }
-
+.nestLevel5{
+	padding-left: 100px; 
+}
 
 .string{
 	color:#090;
+	font-weight:bold;
 }
 
 body{
@@ -33,5 +36,6 @@ body{
 }
 
 .int{
-	color:#005;
+	color:#900;
+	font-weight: bold;
 }
