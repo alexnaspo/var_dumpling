@@ -1,14 +1,15 @@
 if ($('body').children().length == 0) {
 
   var dumpling = $('body').text();
-  var startingArray = dumpling.match(/^array\([0-9]*\)\s\{|^array\s\(/g);
+  var starting = dumpling.match(/[objectarray]*\([0-9a-zA-Z]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{/g);
   
-  if(startingArray) {
+  if(starting) {
 
     dumpling = dumpling.replace(/(\n\s\s|\n)/gm, " ");
     dumpling = dumpling.replace(/([\s]+)/gm, " ");
     console.log(dumpling);
     var myArray = dumpling.match(/array\([0-9]*\)\s\{|\'[@a-zA-Z0-9_-]*\'\s\=>\s(\'?[@a-zA-Z0-9_ -:]*\'\,|NULL)|\s\),?|\["?[a-zA-Z0-9_\.\/]*"?]=>\s([a-zA-Z]*\([0-9a-zA-Z\.]*\)\s(\{)?("[0-9a-zA-Z\/]*")?|NULL)|\}|[0-9]*\s=>\s[a-zA-Z]*\s\(/g);
+    myArray = dumpling.match(/(\[[0-9]*\]=>\s)*?[objectarray]*\([0-9a-zA-Z]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{|\["?[a-zA-Z0-9_\.\/]*"?]=>\s([a-zA-Z]*\([0-9a-zA-Z\.]*\)\s(\{)?(\"(.*?)\")?|NULL)|\}/g);
 
     $('body').empty();
     var nestLevel = 0;
@@ -50,6 +51,16 @@ function highlight (element) {
     element = element.toString().replace(/array\([0-9]*\)\s\{/i, "<span class='array'>" + array + "</span>");
     return element;
   }
+
+  if(element.toString().match(/bool\([0-9a-zA-Z]*\)/i)){
+    console.log('here');
+    var bool = element.toString().match(/bool\([a-zA-Z0-9]*\)/i);
+    bool = bool.toString().replace(/bool\(|\)/g, ' ');
+
+    element = element.toString().replace(/bool\([0-9a-zA-Z]*\)/i, "<span class='bool'>" + bool + "</span>");
+    return element;
+  }  
+
 
 
   if(element.toString().match(/\s".*"/i)){
