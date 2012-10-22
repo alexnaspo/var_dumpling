@@ -1,34 +1,6 @@
-.nestLevel1{
-	padding-left:20px;
-}
-
-.nestLevel2{
-	padding-left:40px;
-}
-
-.nestLevel3{
-	padding-left:60px;
-}
-
-.nestLevel4{
-	padding-left:80px;
-}
-.nestLevel5{
-	padding-left: 100px; 
-}
-
 .string{
 	color:#090;
 	font-weight:bold;
-}
-
-body{
-	font-weight:300;
-	font-family: 'Helvetica Neue', sans-serif;
-	font-size:85%;
-	letter-spacing:2px;
-	line-height:140%
-
 }
 
 .index{
