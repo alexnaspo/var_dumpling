@@ -36,6 +36,14 @@ function highlight (element) {
     element = element.toString().replace(/\["?.*"?\]=>/i, "<span class='index'>" + index + "</span>");
   }
 
+  if(element.toString().match(/[object]*\([a-zA-Z\\]*\)(#[0-9]*)\s(\([0-9]*\)\s)?\{/i)){
+    var object =  element.toString().match(/[object]*\([a-zA-Z\\]*\)(#[0-9]*)\s(\([0-9]*\)\s)?\{/i);
+    console.log(object);
+    element = element.toString().replace(/[object]*\([a-zA-Z\\]*\)(#[0-9]*)\s(\([0-9]*\)\s)?\{/i, "<span class='object'>" + object[0] + "</span>");
+    console.log(element);
+    return element;
+  }
+
   if(element.toString().match(/\s(int|float)\([0-9.]+\)/i)){
     var integer = element.toString().match(/\([0-9.]+\)/i);
     integer = integer.toString().replace(/\(|\)/g, ' ');
@@ -45,7 +53,7 @@ function highlight (element) {
 
   if(element.toString().match(/array\([0-9]*\)\s\{/i)){
     var array = element.toString().match(/array\([0-9]*\)\s\{/i);
-    array = array.toString().replace(/array\([0-9]*\)/i, ' ');
+    //array = array.toString().replace(/array\([0-9]*\)/i, ' ');
 
     element = element.toString().replace(/array\([0-9]*\)\s\{/i, "<span class='array'>" + array + "</span>");
     return element;
@@ -58,8 +66,7 @@ function highlight (element) {
     element = element.toString().replace(/bool\([0-9a-zA-Z]*\)/i, "<span class='bool'>" + bool + "</span>");
     return element;
   }  
-
-
+;
   if(element.toString().match(/\s".*"/i)){
     var str = element.toString().match(/\s".*"/i);
     element = element.toString().replace(/string\([0-9]*\)\s".*"/i, "<span class='string'>" + str + "</span>");
