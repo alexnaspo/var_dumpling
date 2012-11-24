@@ -9,7 +9,13 @@
   }],
   "description": "Make your var_dumps readable, automatically!",
   "browser_action": {
+    "default_icon": "132059060.png"
   },
+  "icons": { 
+          "16": "132059060.png",
+          "48": "132059060.png",
+          "128": "132059060.png" 
+        },
   "permissions": [
     
   ]
