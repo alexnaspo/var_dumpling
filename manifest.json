@@ -4,7 +4,7 @@
   "manifest_version": 2,
   "content_scripts":[{
     "matches":["http://*/*"],
-    "js":["jquery.js", "var_dumpling.js"],
+    "js":["var_dumpling.js"],
     "css":["var_dumpling.css"]
   }],
   "description": "Make your var_dumps readable, automatically!",

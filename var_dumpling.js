@@ -1,33 +1,32 @@
-  var dumpling = $('body').text();
-  var starting = dumpling.match(/^(\[[0-9a-zA-Z"]*\]=>\s)*?[objectarray]*\([0-9a-zA-Z\\]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{/g);
+var dumpling = document.body.textContent;
+
+var starting = dumpling.match(/^(\[[0-9a-zA-Z"]*\]=>\s)*?[objectarray]*\([0-9a-zA-Z\\]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{/g);
+
+if(starting) {
+  dumpling = dumpling.replace(/(\n\s\s|\n)/gm, " ");
+  dumpling = dumpling.replace(/([\s]+)/gm, " ");
   
-  if(starting) {
-    dumpling = dumpling.replace(/(\n\s\s|\n)/gm, " ");
-    dumpling = dumpling.replace(/([\s]+)/gm, " ");
-    
-    var myArray = dumpling.match(/(\[[0-9]*\]=>\s)*?[objectarray]*\([0-9a-zA-Z]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{|\["?[a-zA-Z0-9_\.\/]*"?]=>\s([a-zA-Z]*\([0-9a-zA-Z\.]*\)\s(\{)?(\"(.*?)\")?|NULL)|\}/g);
-    myArray = dumpling.match(/(\[[0-9a-zA-Z"]*\]=>\s)*?[objectarray]*\([0-9a-zA-Z\\]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{|\["?[a-zA-Z0-9:"_\.\/]*"?]=>\s([a-zA-Z]*\([0-9a-zA-Z\.]*\)\s(\{)?(\"(.*?)\")?|NULL)|\}/g);
-
-    $('body').empty();
-    var nestLevel = 0;
-    for (i = 0; i < myArray.length; i++) {
-      var ingredient = {
-        text: highlight(myArray[i]),
-      }
-      if (myArray[i].match(/(\[[0-9a-zA-Z"]*\]=>\s)*?[objectarray]*\([0-9a-zA-Z\\]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{/)) {
-        ingredient.nestLevel = nestLevel;
-        nestLevel++;
-      } else if (myArray[i] == "}" || myArray[i] == " )," || myArray[i] == " )") {
-        nestLevel--;
-        ingredient.nestLevel = nestLevel;
-      } else {
-        ingredient.nestLevel = nestLevel;
-      }
-
-      $('body').append("<div class='element nestLevel" + ingredient.nestLevel + "' style='padding-left:" + (ingredient.nestLevel * 10) +"px;'" + ">" + ingredient.text + "</div>");
-
+  var myArray = dumpling.match(/(\[[0-9]*\]=>\s)*?[objectarray]*\([0-9a-zA-Z]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{|\["?[a-zA-Z0-9_\.\/]*"?]=>\s([a-zA-Z]*\([0-9a-zA-Z\.]*\)\s(\{)?(\"(.*?)\")?|NULL)|\}/g);
+  myArray = dumpling.match(/(\[[0-9a-zA-Z"]*\]=>\s)*?[objectarray]*\([0-9a-zA-Z\\]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{|\["?[a-zA-Z0-9:"_\.\/]*"?]=>\s([a-zA-Z]*\([0-9a-zA-Z\.]*\)\s(\{)?(\"(.*?)\")?|NULL)|\}/g);
+  document.body.innerHTML = "";
+  var nestLevel = 0;
+  for (i = 0; i < myArray.length; i++) {
+    var ingredient = {
+      text: highlight(myArray[i]),
     }
+    if (myArray[i].match(/(\[[0-9a-zA-Z"]*\]=>\s)*?[objectarray]*\([0-9a-zA-Z\\]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{/)) {
+      ingredient.nestLevel = nestLevel;
+      nestLevel++;
+    } else if (myArray[i] == "}" || myArray[i] == " )," || myArray[i] == " )") {
+      nestLevel--;
+      ingredient.nestLevel = nestLevel;
+    } else {
+      ingredient.nestLevel = nestLevel;
+    }
+    document.body.innerHTML += "<div class='element nestLevel" + ingredient.nestLevel + "' style='padding-left:" + (ingredient.nestLevel * 10) +"px;'" + ">" + ingredient.text + "</div>";
+
   }
+}
 
 function highlight (element) {
 
@@ -76,3 +75,4 @@ function highlight (element) {
   }
 
 }
+
