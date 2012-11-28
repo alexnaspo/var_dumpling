@@ -7,7 +7,7 @@ them easier for humans to comprehend automatically. No pre tags and no libraries
 ##Example var_dumpling
 ![Alt text](https://raw.github.com/alexnaspo/var_dumpling-chrome/master/example.jpg)
 
-##Instalation
+##Installation
 On the chrome extensions page (chrome://chrome/extensions/) click "Load unpacked extension.." and load the root directory of this repo.
 
 ###Chrome webstore
@@ -17,7 +17,7 @@ On the chrome extensions page (chrome://chrome/extensions/) click "Load unpacked
 [Coming soon] 
 Check out the var_dumpling-Firefox repo (https://github.com/alexnaspo/var_dumpling-Firefox).
 
-####Support###
+##Support
 Please feel free to create an issue for any problems you may find. If the issue
 is assosiated with a specific var_dump, please include it (if possible). Any help 
 would be greatly appreciated!
