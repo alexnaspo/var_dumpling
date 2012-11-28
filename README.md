@@ -22,4 +22,7 @@ would be greatly appreciated!
 ####Known Issues###
 1.Var_dumpling currently is not activated when the var_dump called from a view.
 
+![Alt text](/alexnaspo/var_dumpling-chrome/master/example.jpg)
+
+
 inspired by JSONview (https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc)
