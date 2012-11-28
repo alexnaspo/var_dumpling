@@ -5,7 +5,7 @@ A Google Chrome extension that beautifies your var_dumps and makes
 them easier for humans to comprehend automatically. No pre tags and no libraries needed!
 
 ##Instalation
-On the chrome extensions page (chrome://chrome/extensions/) click "Load unpacked extension.." and load the root folder of this repo.
+On the chrome extensions page (chrome://chrome/extensions/) click "Load unpacked extension.." and load the root directory of this repo.
 
 ###Chrome webstore
 [Coming very soon]
@@ -14,13 +14,12 @@ On the chrome extensions page (chrome://chrome/extensions/) click "Load unpacked
 [Coming soon] 
 Check out the var_dumpling-Firefox repo (https://github.com/alexnaspo/var_dumpling-Firefox).
 
-###Support###
+####Support###
 Please feel free to create an issue for any problems you may find. If the issue
-is assosiated with a specific var_dump, please include it(if possible). Any help 
+is assosiated with a specific var_dump, please include it (if possible). Any help 
 would be greatly appreciated!
 
-###Known Issues###
-Var_dumpling currently is not activated when the var_dump called from a view.
-
+####Known Issues###
+1.Var_dumpling currently is not activated when the var_dump called from a view.
 
 inspired by JSONview (https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc)
