@@ -1,6 +1,6 @@
 {
   "name": "var_dumpling()",
-  "version": "1.0",
+  "version": "1.1",
   "manifest_version": 2,
   "content_scripts":[{
     "matches":["http://*/*"],
@@ -12,9 +12,9 @@
     "default_icon": "images/icon.png"
   },
   "icons": { 
-          "16": "images/icon.png",
-          "48": "images/icon.png",
-          "128": "images/icon.png" 
+          "16": "images/icon16.png",
+          "48": "images/icon48.png",
+          "128": "images/icon128.png" 
         },
   "permissions": [
     

@@ -65,7 +65,7 @@ function highlight (element) {
     element = element.toString().replace(/bool\([0-9a-zA-Z]*\)/i, "<span class='bool'>" + bool + "</span>");
     return element;
   }  
-;
+
   if(element.toString().match(/\s".*"/i)){
     var str = element.toString().match(/\s".*"/i);
     element = element.toString().replace(/string\([0-9]*\)\s".*"/i, "<span class='string'>" + str + "</span>");
