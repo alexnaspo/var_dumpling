@@ -5,11 +5,11 @@
   if(starting) {
     dumpling = dumpling.replace(/(\n\s\s|\n)/gm, " ");
     dumpling = dumpling.replace(/([\s]+)/gm, " ");
-    
-    var myArray = dumpling.match(/(\[[0-9]*\]=>\s)*?(?:object|array)\([0-9a-zA-Z]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{|\["?[a-zA-Z0-9_\.\/]*"?]=>\s([a-zA-Z]*\([0-9a-zA-Z\.]*\)\s(\{)?(\"(.*?)\")?|NULL)|\}/g);
-    myArray = dumpling.match(/(\[[0-9a-zA-Z"]*\]=>\s)*?(?:object|array)\([0-9a-zA-Z\\]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{|\["?[a-zA-Z0-9:"_\.\/]*"?]=>\s([a-zA-Z]*\([0-9a-zA-Z\.]*\)\s(\{)?(\"(.*?)\")?|NULL)|\}/g);
+
+    var myArray = dumpling.match(/(\[[0-9a-zA-Z"]*\]=>\s)*?(?:object|array)\([0-9a-zA-Z\\]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{|\["?[a-zA-Z0-9:"_\.\/]*"?]=>\s([a-zA-Z]*\([0-9a-zA-Z\.]*\)\s(\{)?(\"(.*?)\")?|NULL)|\}/g);
     document.body.innerHTML = "";
     var nestLevel = 0;
+
     for (i = 0; i < myArray.length; i++) {
       var ingredient = {
         text: highlight(myArray[i]),
@@ -24,7 +24,6 @@
         ingredient.nestLevel = nestLevel;
       }
       document.body.innerHTML += "<div class='element nestLevel" + ingredient.nestLevel + "' style='padding-left:" + (ingredient.nestLevel * 10) +"px;'" + ">" + ingredient.text + "</div>";
-
     }
   }
 
@@ -37,9 +36,7 @@
 
     if(element.toString().match(/[object]*\([a-zA-Z\\]*\)(#[0-9]*)\s(\([0-9]*\)\s)?\{/i)){
       var object =  element.toString().match(/[object]*\([a-zA-Z\\]*\)(#[0-9]*)\s(\([0-9]*\)\s)?\{/i);
-      console.log(object);
       element = element.toString().replace(/[object]*\([a-zA-Z\\]*\)(#[0-9]*)\s(\([0-9]*\)\s)?\{/i, "<span class='object'>" + object[0] + "</span>");
-      console.log(element);
       return element;
     }
 
@@ -51,9 +48,7 @@
     }
 
     if(element.toString().match(/array\([0-9]*\)\s\{/i)){
-      var array = element.toString().match(/array\([0-9]*\)\s\{/i);
-      //array = array.toString().replace(/array\([0-9]*\)/i, ' ');
-
+      var array = element.toString().match(/array\([0-9]*\)\s\{/i);      
       element = element.toString().replace(/array\([0-9]*\)\s\{/i, "<span class='array'>" + array + "</span>");
       return element;
     }
@@ -61,7 +56,6 @@
     if(element.toString().match(/bool\([0-9a-zA-Z]*\)/i)){
       var bool = element.toString().match(/bool\([a-zA-Z0-9]*\)/i);
       bool = bool.toString().replace(/bool\(|\)/g, ' ');
-
       element = element.toString().replace(/bool\([0-9a-zA-Z]*\)/i, "<span class='bool'>" + bool + "</span>");
       return element;
     }  
@@ -76,4 +70,3 @@
 
   }
 }());
-
