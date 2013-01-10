@@ -7,7 +7,7 @@
     dumpling = dumpling.replace(/(\n\s\s|\n)/gm, " ");
     dumpling = dumpling.replace(/([\s]+)/gm, " ");
 
-    var myArray = dumpling.match(/(\[[0-9a-zA-Z"]*\]=>\s)*?(?:object|array)\([0-9a-zA-Z\\]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{|\["?[a-zA-Z0-9:"_\.\/]*"?]=>\s([a-zA-Z]*\([0-9a-zA-Z\.]*\)\s(\{)?(\"(.*?)\")?|NULL)|\}/g);
+    var myArray = dumpling.match(/(\[[0-9a-zA-Z_"]*\]=>\s)*?(?:object|array)\([0-9a-zA-Z\\]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{|\["?[a-zA-Z0-9:"_\.\/]*"?]=>\s([a-zA-Z]*\([0-9a-zA-Z\.]*\)\s(\{)?(\"(.*?)\")?|NULL)|\}/g);
         
     var nestLevel = 0;
     var var_dumpling = "";
