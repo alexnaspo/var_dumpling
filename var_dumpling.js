@@ -1,14 +1,16 @@
 (function() { 
-  var dumpling = document.body.textContent;
-  var starting = dumpling.match(/^(\[[0-9a-zA-Z"]*\]=>\s)*?(?:object|array)\([0-9a-zA-Z\\]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{/g);
+  var dumpling = document.body.textContent;  
+  var starting = dumpling.match(/(\[[0-9a-zA-Z"]*\]=>\s)*?(?:object|array)\([0-9a-zA-Z\\]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{/g);
 
   if(starting) {
+    //var_dump detected
     dumpling = dumpling.replace(/(\n\s\s|\n)/gm, " ");
     dumpling = dumpling.replace(/([\s]+)/gm, " ");
 
     var myArray = dumpling.match(/(\[[0-9a-zA-Z"]*\]=>\s)*?(?:object|array)\([0-9a-zA-Z\\]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{|\["?[a-zA-Z0-9:"_\.\/]*"?]=>\s([a-zA-Z]*\([0-9a-zA-Z\.]*\)\s(\{)?(\"(.*?)\")?|NULL)|\}/g);
-    document.body.innerHTML = "";
+        
     var nestLevel = 0;
+    var var_dumpling = "";
 
     for (i = 0; i < myArray.length; i++) {
       var ingredient = {
@@ -23,8 +25,13 @@
       } else {
         ingredient.nestLevel = nestLevel;
       }
-      document.body.innerHTML += "<div class='element nestLevel" + ingredient.nestLevel + "' style='padding-left:" + (ingredient.nestLevel * 10) +"px;'" + ">" + ingredient.text + "</div>";
+      
+      var_dumpling += "<div class='element nestLevel" + ingredient.nestLevel + "' style='padding-left:" + (ingredient.nestLevel * 10) +"px;'" + ">" + ingredient.text + "</div>";
     }
+    if(nestLevel == 0) {
+      //nestLevel is balanced, var_dump confirmed
+      document.body.innerHTML = var_dumpling;
+    } 
   }
 
   function highlight (element) {
