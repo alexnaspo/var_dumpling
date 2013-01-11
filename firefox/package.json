@@ -1,0 +1,1 @@
+{"license": "", "description": "Beautify your var dumps automatically!", "contributors": [], "author": "Naspro", "url": "", "dependencies": ["api-utils", "addon-kit"], "version": "initial.rev19", "lib": "lib", "fullName": "var_dumpling()", "main": "main", "id": "jid0-6vLxn0SNPlAo5SGU4Xt4OdAYiRQ", "name": "var_dumpling"}

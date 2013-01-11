@@ -1,0 +1,28 @@
+.string{
+    color:#090;
+	font-weight:bold;
+}
+
+.index{
+	font-weight: bold;
+}
+
+.int{
+	color:#900;
+	font-weight: bold;
+}
+
+.array{
+	font-weight: bold;
+	/*color:#009;	*/
+}
+
+.bool {
+	color:#9A32CD;
+	font-weight: bold;
+}
+
+.object {
+	font-weight: bold;
+	/*color:#009;*/
+}
