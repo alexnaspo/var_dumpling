@@ -9,26 +9,25 @@ them easier for humans to comprehend automatically. No pre tags and no libraries
 
 ##Installation
 
-
 ###Google Chrome
-```
+
 **Development**
-+  On the chrome extensions page (chrome://chrome/extensions/) (make sure you have 'Developer Mode' checked)
-+  click "Load unpacked extension.." and load the chrome directory.
+  +  On the chrome extensions page (chrome://chrome/extensions/) (make sure you have 'Developer Mode' checked)
+  +  click "Load unpacked extension.." and load the chrome directory.
 
 **Web Store**
-+  [Coming soon - after testing]
-```
+  +  [Coming soon - after testing]
+
 ###Firefox###
-```
+
 **Development**
-+  Go to the add-ons manager (cmd shift A for OSX)
-+  Under the settings button select "install add-on from file.."
-+  Load the .xpi file located in /firefox/builds
+  +  Go to the add-ons manager (cmd shift A for OSX)
+  +  Under the settings button select "install add-on from file.."
+  +  Load the .xpi file located in /firefox/builds
 
 **Web Store**
-+  [Coming soon - after testing] 
-```
+  +  [Coming soon - after testing] 
+
 ##Support
 Please feel free to create an issue for any problems you may find. If the issue
 is assosiated with a specific var_dump, please include it (if possible). Any help 
