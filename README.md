@@ -5,7 +5,7 @@ A Google Chrome extension that beautifies your var_dumps and makes
 them easier for humans to comprehend automatically. No pre tags and no libraries needed!
 
 ##Example var_dumpling
-![Alt text](https://raw.github.com/alexnaspo/var_dumpling-chrome/master/images/example.jpg)
+![Alt text](https://raw.github.com/alexnaspo/var_dumpling/master/images/example.jpg)
 
 ##Installation
 On the chrome extensions page (chrome://chrome/extensions/) click "Load unpacked extension.." and load the root directory of this repo.
