@@ -1,10 +1,15 @@
+#var_dumpling {
+	letter-spacing: 1.5;
+	font-family:"Arial";
+}
+
 .string{
 	color:#090;
-	font-weight:bold;
+	
 }
 
 .index{
-	font-weight: bold;
+	/*font-weight: bold;*/
 }
 
 .int{
@@ -13,16 +18,14 @@
 }
 
 .array{
-	font-weight: bold;
-	/*color:#009;	*/
+/*	font-weight: bold;*/
 }
 
 .bool {
 	color:#9A32CD;
-	font-weight: bold;
 }
 
 .object {
-	font-weight: bold;
-	/*color:#009;*/
+	/*font-weight: bold;*/
+	
 }

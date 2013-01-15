@@ -26,11 +26,13 @@
         ingredient.nestLevel = nestLevel;
       }
       
-      var_dumpling += "<div class='element nestLevel" + ingredient.nestLevel + "' style='padding-left:" + (ingredient.nestLevel * 10) +"px;'" + ">" + ingredient.text + "</div>";
+      var_dumpling += "<div class='element nestLevel" + ingredient.nestLevel + "' style='padding-left:" + (ingredient.nestLevel * 15) +"px;'" + ">" + ingredient.text + "</div>";
     }
     if(nestLevel == 0) {
       //nestLevel is balanced, var_dump confirmed
-      document.body.innerHTML = var_dumpling;
+      document.body.innerHTML = "<div id='var_dumpling'>" + var_dumpling + "</div";
+      // document.body.innerHTML += var_dumpling;
+      // document.body.innerHTML += "</div>";
     } 
   }
 
