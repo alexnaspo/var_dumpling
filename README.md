@@ -11,12 +11,12 @@ them easier for humans to comprehend automatically. No pre tags and no libraries
 
 ###Google Chrome
 
+**Web Store**
+  +  Download for free [here](https://chrome.google.com/webstore/detail/vardumpling/aikblkmigebodlhkdepmfmgdgmbokkdn?hl=en&gl=US).
+
 **Development**
   +  On the chrome extensions page (chrome://chrome/extensions/) (make sure you have 'Developer Mode' checked)
   +  click "Load unpacked extension.." and load the chrome directory.
-
-**Web Store**
-  +  [Coming soon - after testing]
 
 ###Firefox###
 
@@ -33,4 +33,4 @@ Please feel free to create an issue for any problems you may find. If the issue
 is assosiated with a specific var_dump, please include it (if possible). Any help 
 would be greatly appreciated!
 
-inspired by JSONview (https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc)
+inspired by [JSONview](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc)
