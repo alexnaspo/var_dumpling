@@ -1,46 +1,62 @@
-(function() { 
-  function main(){
-    var body = document.body.textContent;  
-    var dumpling = var_dumpling(body);
-    if(dumpling){
-      document.body.innerHTML = dumpling;  
-    }   
-  }
+// (function() { 
+  // function main(){
+  //   var body = document.body.textContent;  
+  //   var dumpling = new Var_dumpling(body);
+  //   if(dumpling.isVarDumpDetected()){
+  //     dumpling.stripSpacesAndNewLines();
+  //     dumpling.setElements();
+  //     dumpling.createDumpling();
+  //     console.log(dumpling.nestLevel);
 
-  function var_dumpling(body){
-    var objectOrArray = /(\[[0-9a-zA-Z"]*\]=>\s)*?(?:object|array)\([0-9a-zA-Z_\\]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{/g;  
-    var elementsRegex = /(\[[0-9a-zA-Z_"]*\]=>\s)*?(?:object|array)\([0-9a-zA-Z_\\]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{|\["?[a-zA-Z0-9:"_\.\/]*"?]=>\s([a-zA-Z]*\([0-9a-zA-Z\.]*\)\s(\{)?(\"(.*?)\")?|NULL)|\}/g;
+  //     document.body.innerHTML = dumpling.Var_dumpling;  
+  //   }
+  // }
 
-    var starting = body.match(objectOrArray);
-    if(starting) {
-      //var_dump detected
-      body = body.replace(/(\n\s\s|\n)/gm, " ");
-      body = body.replace(/([\s]+)/gm, " ");    
+  //@todo need to get this working as as class for both chrome and firefox
+  //@todo run a simple web server in order to allow unit testing
 
-      var elements = body.match(elementsRegex);          
-      var nestLevel = 0;
-      var var_dumpling = "";
+  function Var_dumpling(body){
+    this.body = body;
+    this.elements = null;
+    this.nestLevel = 0;
+    this.var_dumpling = "";
+    this.OBJECT_OR_ARRAY_REGEX = /(\[[0-9a-zA-Z"]*\]=>\s)*?(?:object|array)\([0-9a-zA-Z_\\]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{/g;
 
-      for (i = 0; i < elements.length; i++) {      
-        ingredient = new Ingredient(elements[i]);
-        if (elements[i].match(objectOrArray)) {
-          ingredient.nestLevel = nestLevel;
-          nestLevel++;
-        } else if (elements[i] == "}" || elements[i] == " )," || elements[i] == " )") {
-          nestLevel--;
-          ingredient.nestLevel = nestLevel;
-        } else {
-          ingredient.nestLevel = nestLevel;
-        }        
-        var_dumpling += "<div style='padding-left:" + (ingredient.nestLevel * 15) +"px;'" + ">" + ingredient.text + "</div>";
-      }
-      if(nestLevel == 0) {
-        //nestLevel is balanced, var_dump confirmed
-        return "<div id='var_dumpling'>" + var_dumpling + "</div";
+    this.isVarDumpDetected = function(){
+      if(this.body.match(this.OBJECT_OR_ARRAY_REGEX)){
+        return true;
       } else {
         return false;
       }
-    }
+    };
+
+    this.stripSpacesAndNewLines = function(){
+      this.body = this.body.replace(/(\n\s\s|\n)/gm, " ");
+      this.body = this.body.replace(/([\s]+)/gm, " ");
+    };
+
+    this.setElements = function(){
+      elementsRegex = /(\[[0-9a-zA-Z_"]*\]=>\s)*?(?:object|array)\([0-9a-zA-Z_\\]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{|\["?[a-zA-Z0-9:"_\.\/]*"?]=>\s([a-zA-Z]*\([0-9a-zA-Z\.]*\)\s(\{)?(\"(.*?)\")?|NULL)|\}/g;
+      this.elements = this.body.match(elementsRegex);
+    };
+
+    this.createDumpling = function(){
+      for (i = 0; i < this.elements.length; i++) {      
+        ingredient = new Ingredient(this.elements[i]);
+        text = ingredient.text;
+        if (text.match(this.OBJECT_OR_ARRAY_REGEX)) {
+          ingredient.nestLevel = this.nestLevel;
+          this.nestLevel++;
+        } else if (text == "}" || text == " )," || text == " )") {
+          this.nestLevel--;
+          ingredient.nestLevel = this.nestLevel;
+        } else {
+          ingredient.nestLevel = this.nestLevel;
+        }        
+        this.var_dumpling += "<div style='padding-left:" + (ingredient.nestLevel * 15) +"px;'" + ">" + ingredient.text + "</div>";
+      }
+    };
+
   }
 
   function Ingredient(element) {
@@ -95,6 +111,43 @@
     }
   }
 
-  main();
+  //main();
   
-}());
+// }());
+
+
+  // function var_dumpling(body){
+  //   var objectOrArray = /(\[[0-9a-zA-Z"]*\]=>\s)*?(?:object|array)\([0-9a-zA-Z_\\]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{/g;  
+  //   var elementsRegex = /(\[[0-9a-zA-Z_"]*\]=>\s)*?(?:object|array)\([0-9a-zA-Z_\\]*\)(#[0-9]*)?\s(\([0-9]*\)\s)?\{|\["?[a-zA-Z0-9:"_\.\/]*"?]=>\s([a-zA-Z]*\([0-9a-zA-Z\.]*\)\s(\{)?(\"(.*?)\")?|NULL)|\}/g;
+
+  //   var starting = body.match(objectOrArray);
+  //   if(starting) {
+  //     //var_dump detected
+  //     body = body.replace(/(\n\s\s|\n)/gm, " ");
+  //     body = body.replace(/([\s]+)/gm, " ");    
+
+  //     var elements = body.match(elementsRegex);          
+  //     var nestLevel = 0;
+  //     var dumplingString = "";
+      
+  //     for (i = 0; i < elements.length; i++) {      
+  //       ingredient = new Ingredient(elements[i]);
+  //       if (elements[i].match(objectOrArray)) {
+  //         ingredient.nestLevel = nestLevel;
+  //         nestLevel++;
+  //       } else if (elements[i] == "}" || elements[i] == " )," || elements[i] == " )") {
+  //         nestLevel--;
+  //         ingredient.nestLevel = nestLevel;
+  //       } else {
+  //         ingredient.nestLevel = nestLevel;
+  //       }        
+  //       dumplingString += "<div style='padding-left:" + (ingredient.nestLevel * 15) +"px;'" + ">" + ingredient.text + "</div>";
+  //     }
+  //     if(nestLevel === 0) {
+  //       //nestLevel is balanced, var_dump confirmed
+  //       return "<div id='var_dumpling'>" + dumplingString + "</div";
+  //     } else {
+  //       return false;
+  //     }
+  //   }
+  // }
