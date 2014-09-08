@@ -44,7 +44,7 @@
   }
 
   function Ingredient(element) {
-    this.text = highlight(element);
+    this.text = highlight(decode_utf8(element));
     this.nestLevel = null;
   } 
 
@@ -93,6 +93,10 @@
     } else {
       return element;
     }
+  }
+
+  function decode_utf8(s) {
+    return decodeURIComponent(escape(s));
   }
 
   main();
