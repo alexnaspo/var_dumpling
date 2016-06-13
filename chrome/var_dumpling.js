@@ -2,8 +2,11 @@
   function main(){
     var body = document.body.textContent;  
     var dumpling = var_dumpling(body);
+    var varEle = document.createElement('div');
     if(dumpling){
-      document.body.innerHTML = dumpling;  
+      varEle.id='var_dumpling';
+      varEle.innerHTML=dumpling;
+      document.body.insertBefore(varEle,document.body.firstChild);
     }   
   }
 
@@ -36,7 +39,7 @@
       }
       if(nestLevel == 0) {
         //nestLevel is balanced, var_dump confirmed
-        return "<div id='var_dumpling'>" + var_dumpling + "</div";
+        return var_dumpling;
       } else {
         return false;
       }
